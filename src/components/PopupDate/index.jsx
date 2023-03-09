@@ -1,4 +1,3 @@
-// PopupDate/index.jsx
 import React, { forwardRef, useState } from 'react'
 import PropTypes from 'prop-types'
 import { Popup, DatePicker  } from 'zarm'
@@ -53,3 +52,4 @@ PopupDate.propTypes = {
 }
 
 export default PopupDate;
+

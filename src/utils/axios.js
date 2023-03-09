@@ -3,7 +3,7 @@ import { Toast } from 'zarm'
 
 const MODE = import.meta.env.MODE // 环境变量
 
-axios.defaults.baseURL = MODE == 'development' ? '/api' : 'http://127.0.0.1/7001'
+axios.defaults.baseURL = MODE == 'development' ? 'http://47.99.134.126:7009' : 'http://47.99.134.126:7009'
 axios.defaults.withCredentials = true
 axios.defaults.headers['X-Requested-With'] = 'XMLHttpRequest'
 axios.defaults.headers['Authorization'] = `${localStorage.getItem('token') || null}`
@@ -18,6 +18,9 @@ axios.interceptors.response.use(res => {
     if (res.data.msg) Toast.show(res.data.msg)
     if (res.data.code == 401) {
       window.location.href = '/login'
+    }
+    if (res.data.code == 413) {
+      Toast.show('图片不得超过 50kb')
     }
     return Promise.reject(res.data)
   }
